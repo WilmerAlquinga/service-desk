@@ -43,3 +43,8 @@ writable/**/*.db
 writable/**/*.sqlite
 
 php_errors.log
+
+#-------------------------
+# Uploaded files
+#-------------------------
+public/uploads/

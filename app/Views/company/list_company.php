@@ -1,6 +1,7 @@
-<?=$header;?>
+<?=$header?>
 
 <h3>Listado de Organizaciones</h3>
+<a href="<?=base_url('create_company')?>">Crear compañía</a>
 <div class="table-responsive">
     <table class="table table-dark table-striped
     table-hover	
@@ -14,6 +15,7 @@
             <th>Descripción</th>
             <th>Fecha de creación</th>
             <th>Titular de la Organización</th>
+            <th>Logo</th>
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -24,8 +26,9 @@
                     <td><?=$company['DESCRIPTION'];?></td>
                     <td><?=$company['CREATION_DATE'];?></td>
                     <td><?=$company['REPRESENTATIVE'];?></td>
+                    <td><?=$company['LOGO'];?></td>
                 </tr>
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             </tbody>
             <tfoot>
                 
@@ -33,4 +36,4 @@
     </table>
 </div>
 
-<?=$footer;?>
+<?=$footer?>
