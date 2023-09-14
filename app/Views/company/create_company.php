@@ -24,6 +24,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="<?=site_url('list_company')?>" class="btn btn-secondary"  type="button">Volver</a>
             </form>
         </div>
     </div>

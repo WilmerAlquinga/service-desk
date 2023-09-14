@@ -8,7 +8,7 @@ class CompanyController extends Controller{
     public function index() {
 
         $company = new Company();
-        $data['companies'] = $company->orderBy('NAME', 'ASC')->findAll();
+        $data['companies'] = $company->orderBy('CREATION_DATE', 'ASC')->findAll();
         $data['header'] = view('layout/header');
         $data['footer'] = view('layout/footer');
 
@@ -47,7 +47,22 @@ class CompanyController extends Controller{
         
         $company->insert($body);
 
-        echo 'Company saved on DB';
+        return $this->response->redirect(site_url('/list_company'));
+    }
+
+    public function delete($id=NULL) {
+
+        $company = new Company();
+        $companyData = $company->where('ID_COMPANY', $id)->first();
+
+        if ($companyData['LOGO'] != NULL || $companyData['LOGO'] != '') {
+            $path=('../public/uploads/logos/'.$companyData['LOGO']);
+            unlink($path);
+        }
+
+        $company->where('ID_COMPANY', $id)->delete($id);
+
+        return $this->response->redirect(site_url('/list_company'));
     }
 
 }
