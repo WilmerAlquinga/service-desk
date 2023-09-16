@@ -13,11 +13,11 @@
             <caption>Organizaciones</caption>
             <tr>
             <th>#</th>
+            <th>Logo</th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Fecha de creación</th>
             <th>Titular de la Organización</th>
-            <th>Logo</th>
             <th>Opciones</th>
             </tr>
             </thead>
@@ -25,11 +25,13 @@
             <?php foreach($companies as $company): ?>
                 <tr class="table-light" >
                     <td scope="row"><?=$company['ID_COMPANY'];?></td>
+                    <td>
+                        <img src="<?=base_url()?>/uploads/logos/<?=$company['LOGO'];?>" class="img-fluid rounded-top" alt="Sin Logo" width=100>
+                    </td>
                     <td><?=$company['NAME'];?></td>
                     <td><?=$company['DESCRIPTION'];?></td>
                     <td><?=$company['CREATION_DATE'];?></td>
                     <td><?=$company['REPRESENTATIVE'];?></td>
-                    <td><?=$company['LOGO'];?></td>
                     <td>
                         <a href="<?=base_url('edit_company/'.$company['ID_COMPANY']);?>" type="button" class="btn btn-success btn-sm">Editar</a>
                         <a href="<?=base_url('delete_company/'.$company['ID_COMPANY']);?>" type="button" class="btn btn-danger btn-sm">Eliminar</a>
