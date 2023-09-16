@@ -16,8 +16,8 @@
             <th>Logo</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Fecha de creación</th>
             <th>Titular de la Organización</th>
+            <th>Fecha de creación</th>
             <th>Opciones</th>
             </tr>
             </thead>
@@ -30,8 +30,8 @@
                     </td>
                     <td><?=$company['NAME'];?></td>
                     <td><?=$company['DESCRIPTION'];?></td>
-                    <td><?=$company['CREATION_DATE'];?></td>
                     <td><?=$company['REPRESENTATIVE'];?></td>
+                    <td><?=$company['CREATION_DATE'];?></td>
                     <td>
                         <a href="<?=base_url('edit_company/'.$company['ID_COMPANY']);?>" type="button" class="btn btn-success btn-sm">Editar</a>
                         <a href="<?=base_url('delete_company/'.$company['ID_COMPANY']);?>" type="button" class="btn btn-danger btn-sm">Eliminar</a>

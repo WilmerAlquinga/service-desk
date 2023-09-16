@@ -65,4 +65,58 @@ class CompanyController extends Controller{
         return $this->response->redirect(site_url('/list_company'));
     }
 
+    public function edit($id=NULL) {
+
+        $company = new Company();
+        $companyData = $company->where('ID_COMPANY', $id)->first();
+        $data['company'] = $companyData;
+        $data['header'] = view('layout/header');
+        $data['footer'] = view('layout/footer');
+
+        return view('company/edit_company', $data);
+    }
+
+    public function update() {
+
+        $company = new Company();
+        $id = $this->request->getVar('id');
+
+        $currentCompany = $company->where('ID_COMPANY', $id)->first();
+        $name = $this->request->getVar('name');
+        $description = $this->request->getVar('description');
+        $representative = $this->request->getVar('representative');
+        $logoName = $currentCompany['LOGO'];
+        
+        $logoValidation = $this->validate([
+            'logo' => [
+                'uploaded[logo]',
+                'ext_in[logo,jpg,jpeg,png]',
+                'max_size[logo,1024]',
+            ]
+        ]);
+
+        if ($logoValidation) {
+            if ($logo = $this->request->getFile('logo')) {
+                if ($currentCompany['LOGO'] != NULL && $currentCompany['LOGO'] != '') {
+                    $path=('../public/uploads/logos/'.$currentCompany['LOGO']);
+                    unlink($path);
+                }
+
+                $logoName = $logo->getRandomName();
+                $logo->move('../public/uploads/logos/', $logoName);
+            }
+        }
+
+        $body = [
+            'NAME' => $name,
+            'DESCRIPTION' => $description,
+            'REPRESENTATIVE' => $representative,
+            'LOGO' => $logoName
+        ];
+        
+        $company->update($id, $body);
+
+        return $this->response->redirect(site_url('/list_company'));
+    }
+
 }

@@ -1,21 +1,21 @@
 <?=$header;?>
-    <div class="card">
+    <div class="card mt-3">
         <div class="card-body">
             <h4 class="card-title">Crear Organización</h4>
-            <form action="<?=site_url('/save_company')?>" method="post" enctype="multipart/form-data">
+            <form action="<?=site_url('/update_company')?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="">
                 </div>
 
                 <div class="mb-3">
-                <label for="representative" class="form-label">Titular</label>
-                <input type="text" name="representative" id="representative" class="form-control" placeholder="">
+                <label for="description" class="form-label">Descripción</label>
+                <input type="text" name="description" id="description" class="form-control" placeholder="">
                 </div>
 
                 <div class="mb-3">
-                <label for="description" class="form-label">Descripción</label>
-                <input type="text" name="description" id="description" class="form-control" placeholder="">
+                <label for="representative" class="form-label">Titular</label>
+                <input type="text" name="representative" id="representative" class="form-control" placeholder="">
                 </div>
 
                 <div class="mb-3">
