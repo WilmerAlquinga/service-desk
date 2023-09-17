@@ -27,6 +27,23 @@ class CompanyController extends Controller{
     public function save() {
 
         $company = new Company();
+
+        $validation = $this->validate([
+            'name' => 'required|min_length[3]',
+            'representative' => 'required|min_length[3]',
+            'logo' => [
+                'uploaded[logo]',
+                'ext_in[logo,jpg,jpeg,png]',
+                'max_size[logo,1024]',
+            ]
+        ]);
+
+        if (!$validation) {
+            $session = session();
+            $session->setFlashdata('mensaje', 'El formato de los datos ingresados es incorrecto o faltan datos requeridos');
+            return redirect()->back()->withInput();
+        }
+
         $name = $this->request->getVar('name');
         $description = $this->request->getVar('description');
         $representative = $this->request->getVar('representative');
@@ -80,6 +97,17 @@ class CompanyController extends Controller{
 
         $company = new Company();
         $id = $this->request->getVar('id');
+
+        $validation = $this->validate([
+            'name' => 'required|min_length[3]',
+            'representative' => 'required|min_length[3]'
+        ]);
+
+        if (!$validation) {
+            $session = session();
+            $session->setFlashdata('mensaje', 'El formato de los datos ingresados es incorrecto o faltan datos requeridos');
+            return redirect()->back()->withInput();
+        }
 
         $currentCompany = $company->where('ID_COMPANY', $id)->first();
         $name = $this->request->getVar('name');
